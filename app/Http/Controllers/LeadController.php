@@ -9,7 +9,7 @@ class LeadController extends Controller
 {
     public function store(Request $request)
     {
-        $response = Http::post('http://amoconnect.ru/amo-ipravo/api/slug/lme-ifinance', [
+        $response = Http::post('http://amoconnect.ru/amo-ipravo/api/slug/lmr-ifinance', [
             'url' => $request->url,
             'phone' => $request->phone
         ]);
