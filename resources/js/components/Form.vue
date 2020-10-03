@@ -1,74 +1,61 @@
 <template>
   <form class="form-template" @submit.prevent="submitForm">
-    <div class="flex flex-row">
-      <vue-country-code @onSelect="onCountrySelect" />
-      <masked-input
-        type="tel"
-        autocomplete="off"
-        placeholder="Your phone*"
-        class="w-full ml-4 pl-4"
-        v-model="$v.phone.$model"
-        :mask="{
-          pattern: '(V11) 111-11-11',
-          formatCharacters: {
-            V: {
-              validate: (char) => /[0-9]/.test(char),
-            },
-          },
-        }"
-        @focus.native="(isValid = true), (onFocus = true)"
-        @blur.native="onFocus = false"
-      />
-    </div>
+    <vue-tel-input
+      v-model="phone"
+      v-bind="settings"
+      @validate="onValidate"
+      @onInput="onInput"
+    ></vue-tel-input>
 
-    <button class="button-pulse">
+    <button
+      class="button-pulse"
+      :class="{ disabled: !inputValid }"
+      v-bind:disabled="!inputValid"
+    >
       <span>Get Consultation and Price</span>
     </button>
   </form>
 </template>
 
 <script>
-import MaskedInput from "vue-masked-input";
-import { required, helpers } from "vuelidate/lib/validators";
+import { VueTelInput } from "vue-tel-input";
 import axios from "axios";
 import { mapActions, mapGetters } from "vuex";
-
-//валидация телефона по регулярному вырожению
-///^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/
-const phoneValidat = helpers.regex(
-  "phoneValidat",
-  /^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/
-);
 
 export default {
   data: () => ({
     phone: "",
     url: "lmr.vskidke.ru",
     dialCode: "",
-    isValid: true,
+    isValid: false,
     onFocus: false,
+    settings: {
+      //enabledCountryCode: true,
+      mode: "international",
+      preferredCountries: ["fr", "es", "gb"],
+      //validCharactersOnly: true,
+      // inputOptions: {
+      //   showDialCode: false,
+      // },
+    },
   }),
-  components: { MaskedInput },
+  components: { VueTelInput },
   mounted() {
     //console.log("Component mounted.");
   },
   computed: {
     ...mapGetters(["isModal", "isSuccess"]),
-    phoneNumber: function () {
-      return "+" + this.dialCode + " " + this.phone;
+    inputValid: function () {
+      return this.phone.length > 0 && this.isValid;
     },
   },
   methods: {
     ...mapActions(["setModal", "unsetModal", "setSuccess", "unsetSuccess"]),
     submitForm() {
-      if (this.$v.phone.$invalid) {
-        this.isValid = false;
-      } else {
-        this.isValid = true;
-        //fbq("track", "Lead");
+      if (this.isValid) {
         axios
           .post("api/lead", {
-            phone: this.phoneNumber,
+            phone: this.phone,
             url: this.url,
           })
           .then((response) => {
@@ -78,19 +65,13 @@ export default {
             this.setSuccess();
             this.setModal();
           });
-        // this.phone = "";
-        // this.setSuccess();
-        // this.setModal();
       }
     },
-    onCountrySelect({ name, iso2, dialCode }) {
-      this.dialCode = dialCode;
+    onValidate({ number, isValid, country }) {
+      //console.log(number);
     },
-  },
-  validations: {
-    phone: {
-      required,
-      phoneValidat,
+    onInput(input) {
+      this.isValid = input.isValid;
     },
   },
 };
