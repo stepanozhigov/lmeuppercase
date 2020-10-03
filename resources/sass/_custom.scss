@@ -122,6 +122,12 @@
     .form-template {
         margin-top: 1.625rem;
 
+        &.form-callback {
+            input {
+                color: theme("colors.cdark");
+            }
+        }
+
         //Phone Code style
         .vue-tel-input {
             .vti__dropdown {

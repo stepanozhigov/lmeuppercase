@@ -1,5 +1,9 @@
 <template>
-  <form class="form-template" @submit.prevent="submitForm">
+  <form
+    class="form-template"
+    @submit.prevent="submitForm"
+    :class="{ 'form-callback': type == 'callback' }"
+  >
     <vue-tel-input
       v-model="phone"
       v-bind="settings"
@@ -12,7 +16,8 @@
       :class="{ disabled: !inputValid }"
       v-bind:disabled="!inputValid"
     >
-      <span>Get Consultation and Price</span>
+      <span v-if="type == 'form'">Get Consultation and Price</span>
+      <span v-if="type == 'callback'">Request a callback</span>
     </button>
   </form>
 </template>
@@ -39,6 +44,12 @@ export default {
       // },
     },
   }),
+  props: {
+    type: {
+      type: String,
+      default: "none",
+    },
+  },
   components: { VueTelInput },
   mounted() {
     //console.log("Component mounted.");
@@ -59,7 +70,13 @@ export default {
             url: this.url,
           })
           .then((response) => {
-            console.log(response);
+            if (this.type == "form") {
+              ym(62231704, "reachGoal", "leadmagnit-form-open-account");
+              ga("send", "event", "leadmagnit-forms-accoint-in-KZ", "send");
+            } else if (this.type == "callback") {
+              ym(62231704, "reachGoal", "leadmagnit-callback-open-account");
+              ga("send", "event", "leadmagnit-callback-accoint-in-KZ", "send");
+            }
 
             this.phone = "";
             this.setSuccess();

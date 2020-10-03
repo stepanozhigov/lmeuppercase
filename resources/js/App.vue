@@ -124,7 +124,7 @@
             Leave your contacts and get consultation from our experts
             in&nbsp;5&nbsp;minutes! Phone and WhatsApp consultation available
           </h5>
-          <Form />
+          <Form type="form" />
           <a href="http://uppercase.group/">Go to the Website</a>
         </div>
 
@@ -181,7 +181,7 @@
           />
         </svg>
       </div>
-      <Form />
+      <Form type="callback" />
     </div>
     <!-- /MODAL VIEW -->
   </div>
