@@ -125,7 +125,7 @@
             in&nbsp;5&nbsp;minutes! Phone and WhatsApp consultation available
           </h5>
           <Form />
-          <a href="https://ifinance.kz/main">Go to the Website</a>
+          <a href="http://uppercase.group/">Go to the Website</a>
         </div>
 
         <p>I agree to Terms and Conditions and personal data consent form.</p>
@@ -142,7 +142,7 @@
       <h2>Thank you!</h2>
       <h4>Your request was sent</h4>
       <a
-        href="https://ifinance.kz/main"
+        href="http://uppercase.group/"
         class="flex justify-center items-center button-pulse"
         >Go to the Website</a
       >
