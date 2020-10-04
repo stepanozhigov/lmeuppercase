@@ -201,7 +201,7 @@ export default {
     window.addEventListener("resize", () => {
       this.setViewHeight();
     });
-    window.addEventListener("orientationchange", this.setViewHeight());
+    window.addEventListener("orientationchange", () => this.setViewHeight());
     // this.setSuccess();
     // this.setModal();
   },

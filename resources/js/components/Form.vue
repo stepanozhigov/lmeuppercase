@@ -9,6 +9,7 @@
       v-bind="settings"
       @validate="onValidate"
       @onInput="onInput"
+      @country-changed="onCountryChange"
     ></vue-tel-input>
 
     <button
@@ -30,18 +31,21 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
     phone: "",
-    url: "lmr.vskidke.ru",
+    url: "lme.vskidke.ru",
     dialCode: "",
     isValid: false,
     onFocus: false,
     settings: {
-      //enabledCountryCode: true,
+      disabledFormatting: false,
+      enabledCountryCode: false,
       mode: "international",
       preferredCountries: ["fr", "es", "gb"],
-      //validCharactersOnly: true,
-      // inputOptions: {
-      //   showDialCode: false,
-      // },
+      validCharactersOnly: true,
+      dynamicPlaceholder: true,
+      inputOptions: {
+        showDialCode: false,
+        tabindex: 0,
+      },
     },
   }),
   props: {
@@ -88,7 +92,12 @@ export default {
       //console.log(number);
     },
     onInput(input) {
+      //console.log(input);
       this.isValid = input.isValid;
+    },
+    onCountryChange(country) {
+      //console.log(country);
+      this.phone = "";
     },
   },
 };
