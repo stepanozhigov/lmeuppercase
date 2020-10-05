@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Uppercase</title>
+    <link rel="icon" href="{{ asset('images/favicon-32x32.png')}}" sizes='32x32'>
+    <link rel="icon" href="{{ asset('images/favicon-128x128.png')}}" sizes='128x128'>
+    <link rel="icon" href="{{ asset('images/favicon-180x180.png')}}" sizes='180x180'>
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 </head>
 
@@ -40,12 +43,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162968640-4"></script>;
     <script>
         window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
-
-
- gtag('config', 'UA-162968640-4');
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-162968640-4');
     </script>
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
 
     <!-- Facebook Pixel Code -->
     <script>
