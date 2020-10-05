@@ -121,7 +121,7 @@
             for offshore companies in&nbsp;Kazakhstan in&nbsp;10&nbsp;days!
           </h3>
           <h5>
-            Leave your contacts and get consultation from our experts
+            Leave your contacts and get consultation from our experts<br />
             in&nbsp;5&nbsp;minutes! Phone and WhatsApp consultation available
           </h5>
           <Form type="form" />
