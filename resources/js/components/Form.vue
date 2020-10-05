@@ -37,9 +37,9 @@ export default {
     onFocus: false,
     settings: {
       disabledFormatting: false,
-      enabledCountryCode: false,
+      enabledCountryCode: true,
       mode: "international",
-      preferredCountries: ["fr", "es", "gb"],
+      preferredCountries: ["fr", "us", "gb"],
       validCharactersOnly: true,
       dynamicPlaceholder: true,
       inputOptions: {
