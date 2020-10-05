@@ -118,7 +118,8 @@
         <div class="flex-grow md:flex md:flex-col md:justify-center">
           <h1>Secure Bank Accounts</h1>
           <h3>
-            for offshore companies in&nbsp;Kazakhstan in&nbsp;10&nbsp;days!
+            for offshore companies in&nbsp;Kazakhstan and Kyrgyzstan
+            in&nbsp;10&nbsp;days!
           </h3>
           <h5>
             Leave your contacts and get consultation from our experts<br />
